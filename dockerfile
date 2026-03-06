@@ -9,9 +9,10 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 COPY . /app
 
-RUN pip3 install --no-cache-dir -r requirements.txt
+# Instala pacotes com flag para ignorar PEP 668
+RUN pip3 install --no-cache-dir -r requirements.txt --break-system-packages
 
-# Baixa modelo MUITO leve pro free tier (mude pra :3b depois se quiser)
+# Baixa modelo MUITO leve pro free tier
 RUN ollama serve & sleep 15 && ollama pull llama3.2:1b && pkill ollama
 
 EXPOSE 8501
