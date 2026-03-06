@@ -17,4 +17,5 @@ RUN ollama serve & sleep 15 && ollama pull llama3.2:1b && pkill ollama
 
 EXPOSE 8501
 
-CMD ["sh", "-c", "ollama serve & sleep 5 && streamlit run app.py --server.port 8501 --server.address 0.0.0.0"]
+ENTRYPOINT ["sh", "-c"]
+CMD ["ollama serve & sleep 5 && streamlit run app.py --server.port 8501 --server.address 0.0.0.0"]
